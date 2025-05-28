@@ -1,6 +1,9 @@
 import { useState } from "react"
+import {useGlobalStateContext} from "../provider/GlobalStateProvider"
 
-export default function Capitale({capitale}){
+export default function Capitale(){
+    const {globalState}=useGlobalStateContext()
+    const {capitale}=globalState
     const [capStyle,setCapStyle]=useState({})
 
     const handleCapStyle=(e)=>{

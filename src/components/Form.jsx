@@ -1,12 +1,13 @@
-import { useRef, useState } from "react";
+import { useRef, useState,useReducer } from "react";
 
 export default function Form() {
   const inputRef = useRef(null);
-  const [form, setFormData] = useState({
+  const initialState={
     lastName: "Toure",
     firstName: "Serge",
     email: "sergetoure@gmail.com",
-  });
+  }
+  const [form, dispatch] = useState(initialState);
   const focusBtn = () => {
     inputRef.current.focus();
   };
@@ -21,37 +22,34 @@ export default function Form() {
           name="lastname"
           value={form.lastName}
           onInput={(e) =>
-            setFormData({
-              ...form,
-              lastName: e.target.value,
+            dispatch({
+             ...form,lastName:e.target.value
             })
           }
         />
       </div>
       <div>
-        <label htmlFor="firstname">last name: </label>
+        <label htmlFor="firstname">fisrt name: </label>
         <input
           type="text"
           name="firstname"
           value={form.firstName}
           onInput={(e) =>
-            setFormData({
-              ...form,
-              firstName: e.target.value,
+            dispatch({
+             ...form,firstName:e.target.value
             })
           }
         />
       </div>
       <div>
-        <label htmlFor="email">last name: </label>
+        <label htmlFor="email">e mail: </label>
         <input
           type="email"
           name="email"
           value={form.email}
           onInput={(e) =>
-            setFormData({
-              ...form,
-              email: e.target.value,
+            dispatch({
+             ...form,email:e.target.value
             })
           }
         />
@@ -67,7 +65,12 @@ export default function Form() {
       <button
         onClick={(e) => {
           focusBtn;
-          setFormData({ lastName: "", firstName: "", email: "" });
+          dispatch({
+            lastName: "",
+            firstName: "",
+            email: ""
+
+          });
         }}
       >
         reset

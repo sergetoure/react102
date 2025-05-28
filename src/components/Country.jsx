@@ -1,9 +1,12 @@
 import Capitale from "./Capitale"
+import { useGlobalStateContext } from "../provider/GlobalStateProvider";
 
-function Country({country,capitale,children}){
+function Country(){
+    const {globalState}=useGlobalStateContext()
+    const {country}=globalState
     return <>
      <h2>{country}</h2>
-     <Capitale capitale={capitale} />
+     <Capitale />
     </>
 }
 

@@ -1,11 +1,13 @@
-const User = ({ params }) => {
+import { useGlobalStateContext } from "../provider/GlobalStateProvider";
+const User = () => {
+  const {globalState}=useGlobalStateContext()
   const userStyling = {
     fontSize: "30px",
     color: "",
     fontFamily: "Arial",
     fontWeight: "900",
   };
-  const { lastName, firstName, date, country } = params;
+  const { lastName, firstName, date, country,email } = globalState;
   return (
     <>
       <span
@@ -13,6 +15,7 @@ const User = ({ params }) => {
       >{`${firstName} ${lastName.toUpperCase()}`}</span>
       <span className="date">{date}</span>
       <div>{country}</div>
+      <div>{email}</div>
     </>
   );
 };
