@@ -1,4 +1,3 @@
-
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -9,10 +8,11 @@ import logo from "./assets/logo.jpg";
 import Btn from "./components/Btn";
 import Cite from "./components/Cite";
 import Input from "./components/Input";
+import Form from "./components/Form";
+import { useState } from "react";
 
 function App() {
-  
-  let stateData = {
+  const [userData, setUserData] = useState({
     lastName: "toure",
     firstName: "Serge",
     date: "05/31/1985",
@@ -20,7 +20,7 @@ function App() {
     capitale: "Dakar",
     score: 87,
     children: <Cite author="Serge Toure" desc="Description here" />,
-  };
+  });
 
   return (
     <>
@@ -29,21 +29,41 @@ function App() {
       </div>
       <div className="leader">
         <div>
-          <User params={stateData} />
+          <User params={userData} />
         </div>
         <div>
-          <Country country={stateData.country} capitale={stateData.capitale} />
+          <Country country={userData.country} capitale={userData.capitale} />
         </div>
         <div>
-          <Score score={stateData.score} />
+          <Score score={userData.score} />
         </div>
       </div>
       <div>
         <Btn />
       </div>
-      <div>{stateData.children}</div>
+      <div>{userData.children}</div>
       <div>
         <Input />
+      </div>
+      <div>
+        <Form />
+      </div>
+      <div>
+        <button
+          onClick={() =>
+            setUserData({
+              lastName: "kone",
+              firstName: "Karim",
+              date: "05/31/1990",
+              country: "Ghana",
+              capitale: "Accra",
+              score: 45,
+              children: <Cite author="kone karim" desc="Description here" />,
+            })
+          }
+        >
+          Update state
+        </button>
       </div>
     </>
   );
